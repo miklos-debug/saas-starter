@@ -1,9 +1,10 @@
 import { compare, hash } from 'bcryptjs';
 import { SignJWT, jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
+import { authSecret } from '@/lib/env';
 import { NewUser } from '@/lib/db/schema';
 
-const key = new TextEncoder().encode(process.env.AUTH_SECRET);
+const key = new TextEncoder().encode(authSecret);
 const SALT_ROUNDS = 10;
 
 export async function hashPassword(password: string) {
