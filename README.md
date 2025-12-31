@@ -97,6 +97,13 @@ When you're ready to deploy your SaaS application to production, follow these st
 1. Push your code to a GitHub repository.
 2. Connect your repository to [Vercel](https://vercel.com/) and deploy it.
 3. Follow the Vercel deployment process, which will guide you through setting up your project.
+4. In **Project Settings → Environment Variables**, add the values from [.env.example](./.env.example):
+   - `POSTGRES_URL` pointing at your production database
+   - `STRIPE_SECRET_KEY` from the Stripe Dashboard
+   - `STRIPE_WEBHOOK_SECRET` from your production webhook
+   - `BASE_URL` set to your public Vercel domain (for example `https://your-project.vercel.app`)
+   - `AUTH_SECRET` generated with `openssl rand -base64 32`
+5. Re-deploy after saving the variables. The app will also fall back to `https://${VERCEL_URL}` if `BASE_URL` is not set so Checkout/Portal links resolve correctly on Vercel.
 
 ### Add environment variables
 
